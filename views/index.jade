@@ -1,0 +1,77 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="description", content="")
+    meta(name="author", content="")
+    link(rel="icon", href="../../favicon.ico")
+    title Theme Template for Bootstrap
+    // Bootstrap core CSS
+    link(href="/css/bootstrap.css", rel="stylesheet")
+    // Bootstrap theme
+    link(href="/css/bootstrap-theme.css", rel="stylesheet")
+    // Custom styles for this template
+    link(href="/theme.css", rel="stylesheet")
+    // Just for debugging purposes. Don't actually copy these 2 lines!
+    //if lt IE 9
+      script(src="../../assets/js/ie8-responsive-file-warning.js")
+    script(src="js/ie-emulation-modes-warning.js")
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js")
+      script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
+  body(role="document")
+    // Fixed navbar
+    .navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="#") VRCube Control Panel
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href="#") Home
+    .container.theme-showcase(role="main")
+      // Main jumbotron for a primary marketing message or call to action
+      .jumbotron
+      .page-header
+        h1 Modify Game
+      div(style="width:200px;float:left;")
+        form(method='post', action='/time',style="width:200px;")
+          b Game Duration:  
+          b!=currTime
+          input.form-control(name='timeAmt', type='text')
+          input.btn.btn-warning(type="submit",style='margin-top:10px;',value="Submit")
+        form(method='post',action='/startGame' style="margin-top:25px;")
+          input.btn.btn-success(type="submit", value='Start Game!')
+        form(method='post',action='/endGame' style="margin-top:25px;")
+          input.btn.btn-danger(type="submit", value='End Game Now!')
+        form(method='post',action='/enterConfig' style="margin-top:25px;")
+          input.btn.btn-primary(type="submit", value='Start Config!')
+        form(method='post',action='/centerConfig' style="margin-top:25px;")
+          input.btn.btn-warning(type="submit", value='Center')
+        form(method='post',action='/exitConfig' style="margin-top:25px;")
+          input.btn.btn-danger(type="submit", value='Quit Config')
+      div(style="max-width:824px;height:500px;position:relative;margin-left:auto;")
+        table.table.table-bordered
+          thead
+            tr
+              th EVENT-NUMBER
+              th TIME
+              th ACTION
+              th VALUE
+          tbody
+            - for(var i =0;i<compLog.length;i++)
+              tr
+                td=compLog[i].eventNum
+                td=compLog[i].time
+                td=compLog[i].action
+                td=compLog[i].val
+
+
