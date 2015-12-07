@@ -2,7 +2,7 @@ express = require('express')
 osc = require('node-osc')
 bodyParser = require('body-parser')
 app = express()
-client = new osc.Client('127.0.0.1', 9999)
+client = new osc.Client("192.168.0.50", 9999)#'127.0.0.1', 9999)
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -65,11 +65,18 @@ app.post('/time', (req, res)->
   log("/timeChange", lastSentTime)
   res.redirect('/')
 )
+app.post('/skipTutorial', (req,res)->
+  console.log("Tutorial Skipped!")
+  address = '/skipTutorial'
+  client.send(address)
+  log(address, true)
+  res.redirect('/')
+)
 app.post('/startGame', (req,res)->
   console.log("Start Game!")
   address = '/startGame'
-  client.send(address)
-  log(address, true)
+  client.send(address, req.body.levelSelect)
+  log(address, req.body.levelSelect)
   res.redirect('/')
 )
 app.post('/endGame', (req,res)->
@@ -88,7 +95,7 @@ app.post('/enterConfig', (req,res)->
 )
 app.post('/centerConfig', (req,res)->
   console.log("Centered!")
-  address = '/center'
+  address = '/centerConfig'
   client.send(address)
   log(address, true)
   res.redirect('/')

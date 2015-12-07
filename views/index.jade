@@ -3,20 +3,15 @@ html(lang="en")
   head
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="viewport" content="initial-scale=1, maximum-scale=1")
     meta(name="description", content="")
     meta(name="author", content="")
     link(rel="icon", href="../../favicon.ico")
     title Theme Template for Bootstrap
-    // Bootstrap core CSS
     link(href="/css/bootstrap.css", rel="stylesheet")
-    // Bootstrap theme
     link(href="/css/bootstrap-theme.css", rel="stylesheet")
-    // Custom styles for this template
     link(href="/theme.css", rel="stylesheet")
-    // Just for debugging purposes. Don't actually copy these 2 lines!
-    //if lt IE 9
-      script(src="../../assets/js/ie8-responsive-file-warning.js")
+    script(src="../../assets/js/ie8-responsive-file-warning.js")
     script(src="js/ie-emulation-modes-warning.js")
     // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
     //if lt IE 9
@@ -42,14 +37,20 @@ html(lang="en")
       .jumbotron
       .page-header
         h1 Modify Game
-      div(style="width:200px;float:left;")
+      div(style="width:200px;")
         form(method='post', action='/time',style="width:200px;")
           b Game Duration:  
           b!=currTime
           input.form-control(name='timeAmt', type='text')
           input.btn.btn-warning(type="submit",style='margin-top:10px;',value="Submit")
+        form(method='post',action='/skipTutorial' style="margin-top:25px;")
+          input.btn.btn-success(type="submit", value='Skip Tutorial!')
         form(method='post',action='/startGame' style="margin-top:25px;")
-          input.btn.btn-success(type="submit", value='Start Game!')
+          label(for="Level Selection")
+            select.form-control(name='levelSelect')
+              option(value='0') Christmas Town
+              option(value='1') Fruit Dojo
+            input.btn.btn-success(type="submit", value='Start Game!')
         form(method='post',action='/endGame' style="margin-top:25px;")
           input.btn.btn-danger(type="submit", value='End Game Now!')
         form(method='post',action='/enterConfig' style="margin-top:25px;")
