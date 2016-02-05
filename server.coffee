@@ -75,8 +75,8 @@ app.post('/skipTutorial', (req,res)->
 app.post('/startGame', (req,res)->
   console.log("Start Game!")
   address = '/startGame'
-  client.send(address, req.body.levelSelect)
-  log(address, req.body.levelSelect)
+  client.send(address)
+  log(address)
   res.redirect('/')
 )
 app.post('/endGame', (req,res)->
